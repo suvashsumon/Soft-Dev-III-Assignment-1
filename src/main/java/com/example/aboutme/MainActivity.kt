@@ -31,11 +31,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun addNickName(view : View)
     {
-
-        binding.nickName.text = binding.editText.text
-        binding.editText.visibility = View.GONE
-        binding.button.visibility = View.GONE
-        binding.nickName.visibility = View.VISIBLE
+        binding.apply {
+            invalidateAll()
+            //binding.nickName.text = binding.editText.text
+            myName?.mynickname = editText.text.toString()
+            binding.editText.visibility = View.GONE
+            binding.button.visibility = View.GONE
+            binding.nickName.visibility = View.VISIBLE
+        }
 
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)

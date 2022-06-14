@@ -59,7 +59,7 @@
             android:textAlignment="center"
             android:textSize="20sp"
             android:visibility="gone"
-            android:text="@{myName.nickname}"/>
+            android:text="@{myName.mynickname}"/>
 
         <ImageView
             android:id="@+id/starImage"

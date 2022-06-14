@@ -1,3 +1,3 @@
 package com.example.aboutme
 
-data class NickName(val name:String = "", val nickname:String = "")
+data class NickName(val name:String = "", var mynickname:String = "")
