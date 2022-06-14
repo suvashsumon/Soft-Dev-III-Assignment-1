@@ -9,27 +9,33 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import com.example.aboutme.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+    private val nickName:NickName = NickName("Suvash Kumar")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        val btn: Button = findViewById(R.id.button)
-        btn.setOnClickListener {
+        //setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.myName = nickName
+//        val btn: Button = findViewById(R.id.button)
+//        btn.setOnClickListener {
+//            addNickName(it)
+//        }
+        binding.button.setOnClickListener {
             addNickName(it)
         }
     }
 
     private fun addNickName(view : View)
     {
-        val editText: EditText = findViewById(R.id.editText)
-        var nickName: TextView = findViewById(R.id.nick_name)
 
-        nickName.text = editText.text
-        editText.visibility = View.GONE
-        view.visibility = View.GONE
-        nickName.visibility = View.VISIBLE
+        binding.nickName.text = binding.editText.text
+        binding.editText.visibility = View.GONE
+        binding.button.visibility = View.GONE
+        binding.nickName.visibility = View.VISIBLE
 
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
